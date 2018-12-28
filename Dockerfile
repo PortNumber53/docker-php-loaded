@@ -1,9 +1,13 @@
-FROM php:7.2.13-stretch
-
+FROM php:7.2.13-fpm-stretch
 
 LABEL maintainer="grimlock@portnumber53.com"
 
-RUN pecl install redis-4.0.1 \
-    && pecl install xdebug-2.6.0 \
-    && docker-php-ext-enable redis xdebug
+# Update system
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
