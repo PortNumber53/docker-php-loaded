@@ -6,6 +6,7 @@ LABEL maintainer="grimlock@portnumber53.com"
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         git \
+        rsync \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pecl install xdebug \
